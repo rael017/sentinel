@@ -2,7 +2,6 @@
 namespace Horus\Sentinel;
 
 use Horus\Sentinel\Contracts\UserIdentityInterface;
-use Horus\Sentinel\Contracts\UserRepositoryInterface;
 use Horus\Sentinel\Contracts\RateLimiterInterface;
 
 class Sentinel

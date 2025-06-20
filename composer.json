@@ -3,7 +3,7 @@
     "description": "Pacote de segurança completo para autenticação, autorização e proteção de aplicações.",
     "type": "library",
     "license": "MIT",
-    "keywords": ["security", "authentication", "authorization", "php"],
+    "keywords": ["security", "authentication", "authorization", "php", "auth"],
     "authors": [
         {
             "name": "Felipe Raphael",
