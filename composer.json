@@ -1,0 +1,23 @@
+{
+    "name": "horus/sentinel",
+    "description": "Pacote de segurança completo para autenticação, autorização e proteção de aplicações.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["security", "authentication", "authorization", "php"],
+    "authors": [
+        {
+            "name": "Felipe Raphael",
+            "email": "Raphael.f.s.m07@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Horus\\Sentinel\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "predis/predis": "^2.0"
+    }
+}
