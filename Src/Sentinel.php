@@ -8,7 +8,7 @@ use Horus\Sentinel\Contracts\RateLimiterInterface;
 class Sentinel
 {
     public function __construct(
-        private UserRepositoryInterface $users,
+        private $userModelClass,
         private RateLimiterInterface $limiter,
         private string $appKey
     ) {
@@ -23,7 +23,7 @@ class Sentinel
             return false;
         }
 
-        $user = $this->users->findByEmail($email);
+        $user = $this->userModelClass::findByEmail($email);
 
         if ($user && password_verify($password, $user->getPasswordHash())) {
             SessionManager::create($user->getId());
@@ -43,7 +43,8 @@ class Sentinel
     public function user(): ?UserIdentityInterface
     {
         $userId = SessionManager::get('user_id');
-        return $userId ? $this->users->findById($userId) : null;
+        // Também usa o método estático para encontrar o utilizador.
+        return $userId ? $this->userModelClass::findById($userId) : null;
     }
 
     public function authorize(string $role): bool
