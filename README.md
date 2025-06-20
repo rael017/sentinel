@@ -27,7 +27,7 @@ O Sentinel foi desenhado para ser flexível. Ele depende de interfaces, permitin
 A. UserIdentityInterface
 Sua classe de modelo User precisa implementar esta interface:
 
-php
+
 <?php
 namespace App\Models;
 
@@ -50,7 +50,7 @@ class User implements UserIdentityInterface
 B. UserRepositoryInterface
 Você precisa criar um repositório que saiba como buscar os utilizadores na base de dados:
 
-php
+
 <?php
 namespace App\Repositories;
 
@@ -74,7 +74,6 @@ Implemente a interface de rate limiting se desejar controlar o número de tentat
 2. Inicializar o Sentinel
 No bootstrap da sua aplicação (bootstrap/app.php ou equivalente):
 
-php
 
 use Horus\Sentinel\Sentinel;
 use App\Repositories\UserRepository;
@@ -89,8 +88,7 @@ $sentinel = new Sentinel(
 );
 Se estiver usando um container de injeção de dependência (DI), registre como singleton:
 
-php
-C
+
 $container->singleton(Sentinel::class, fn() => $sentinel);
 3. Utilização
 🔐 Autenticação
@@ -105,7 +103,6 @@ if ($sentinel->login($email, $password)) {
     exit;
 }
 🔒 Proteção de Rotas (Middleware)
-php
 
 class AuthMiddleware {
     public function handle($request, $next) {
@@ -122,7 +119,7 @@ class AuthMiddleware {
 🛡️ CSRF Protection
 No formulário:
 
-html
+
 
 <form method="POST">
     <?php echo $sentinel->csrfInput(); ?>
@@ -130,7 +127,6 @@ html
 </form>
 No controlador:
 
-php
 
 if (!$sentinel->validateCsrfToken($_POST['_csrf'] ?? null)) {
     // Erro 403
@@ -138,12 +134,10 @@ if (!$sentinel->validateCsrfToken($_POST['_csrf'] ?? null)) {
 🔗 URLs Assinadas
 Gerar o link:
 
-php
 
 $urlSegura = $sentinel->signUrl('http://meusite.com/cancelar-conta', 3600); // válido por 1 hora
 Validar na rota:
 
-php
 
 if (!$sentinel->validateSignedUrl($urlCompleta)) {
     // Erro 401 - link inválido ou expirado
