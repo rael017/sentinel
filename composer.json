@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Horus\\Sentinel\\": "src/"
+            "Sentinel\\": "src/"
         }
     },
     "require": {
